@@ -74,9 +74,6 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"] if os.getenv("NODE_ENV") != "production" else [
-        "http://localhost:5173",  # Vite dev server
-        "http://localhost:3000",  # Alternative dev port
-        "http://localhost:3001",  # Additional dev port
         "https://preview-05fcvr4e--ai-procure-optimize-5.deploypad.app",
         "https://preview-22p47wvh--ai-procure-optimize-5.deploypad.app",
         "https://*.deploypad.app",  # All deploypad subdomains
@@ -140,9 +137,6 @@ async def contracts_analyze_options():
         "allowed_methods": ["POST", "OPTIONS"],
         "allowed_headers": ["Content-Type", "Accept", "Authorization"],
         "allowed_origins": ["*"] if os.getenv("NODE_ENV") != "production" else [
-            "http://localhost:5173",
-            "http://localhost:3000",
-            "http://localhost:3001",
             "https://preview-05fcvr4e--ai-procure-optimize-5.deploypad.app",
             "https://preview-22p47wvh--ai-procure-optimize-5.deploypad.app",
             "https://*.deploypad.app",
@@ -179,9 +173,11 @@ async def not_found_handler(request: Request, exc: Exception):
     )
 
 if __name__ == "__main__":
+    port = int(os.getenv("PORT", 3000))
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
+        port=port,
         reload=True if os.getenv("NODE_ENV") != "production" else False,
         log_level="info"
     ) 
