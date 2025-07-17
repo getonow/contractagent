@@ -19,5 +19,5 @@ COPY . .
 # Expose port
 EXPOSE 3000
 
-# Start the application on port 3000
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3000"] 
+# Start the application using the PORT environment variable
+CMD uvicorn main:app --host 0.0.0.0 --port $PORT 
