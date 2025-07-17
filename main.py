@@ -83,7 +83,7 @@ app.add_middleware(
         "https://*.herokuapp.com"  # Heroku domains
     ],
     allow_credentials=False,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
@@ -128,24 +128,7 @@ async def root():
         }
     }
 
-# CORS preflight handler for the contracts endpoint
-@app.options("/api/contracts/analyze")
-async def contracts_analyze_options():
-    """Handle CORS preflight requests for the contracts analyze endpoint"""
-    return {
-        "message": "CORS preflight successful",
-        "allowed_methods": ["POST", "OPTIONS"],
-        "allowed_headers": ["Content-Type", "Accept", "Authorization"],
-        "allowed_origins": ["*"] if os.getenv("NODE_ENV") != "production" else [
-            "https://preview-05fcvr4e--ai-procure-optimize-5.deploypad.app",
-            "https://preview-22p47wvh--ai-procure-optimize-5.deploypad.app",
-            "https://*.deploypad.app",
-            "https://*.railway.app",
-            "https://*.vercel.app",
-            "https://*.netlify.app",
-            "https://*.herokuapp.com"
-        ]
-    }
+
 
 # Global exception handler
 @app.exception_handler(Exception)
