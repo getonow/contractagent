@@ -113,7 +113,17 @@ async def log_requests(request: Request, call_next):
 
 # Include routers
 app.include_router(contract_routes.router, prefix="/api/contracts", tags=["contracts"])
-app.include_router(health_routes.router, prefix="/api/health", tags=["health"])
+
+# Direct health endpoint for Railway health checks
+@app.get("/api/health", tags=["health"])
+async def direct_health_check():
+    """Direct health check endpoint for Railway"""
+    return {
+        "status": "healthy",
+        "timestamp": datetime.now().isoformat(),
+        "service": "CONTRACTEXTRACT AI Agent",
+        "version": "1.0.0"
+    }
 
 # Root endpoint
 @app.get("/", tags=["root"])
