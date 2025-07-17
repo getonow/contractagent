@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 3000
 
 # Start the application with proper environment variable handling
-CMD ["/bin/bash", "-c", "PORT=${PORT:-3000} && echo \"Starting FastAPI application on port $PORT\" && uvicorn main:app --host 0.0.0.0 --port $PORT"] 
+CMD ["/bin/bash", "-c", "env | grep PORT && echo \"Starting FastAPI application on port ${PORT:-3000}\" && uvicorn main:app --host 0.0.0.0 --port ${PORT:-3000}"] 
