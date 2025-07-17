@@ -195,7 +195,7 @@ The backend will now log detailed information for each request:
 
 ### Environment Variables
 - `NODE_ENV`: Controls CORS behavior (development vs production)
-- `PORT`: Backend server port (default: 3000)
+
 - `HOST`: Backend server host (default: 0.0.0.0)
 
 ## Next Steps

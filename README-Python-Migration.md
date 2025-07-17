@@ -27,7 +27,7 @@ This repository has been successfully migrated from Node.js/Express to Python/Fa
    python startup.py
    
    # Option 2: Using uvicorn directly
-   uvicorn main:app --host 0.0.0.0 --port 3000 --reload
+   uvicorn main:app --host 0.0.0.0 --reload
    
    # Option 3: Using the main file
    python main.py
@@ -152,7 +152,7 @@ python startup.py
 export NODE_ENV=production
 
 # Start without auto-reload
-uvicorn main:app --host 0.0.0.0 --port 3000
+uvicorn main:app --host 0.0.0.0
 ```
 
 ### Docker Deployment
@@ -166,7 +166,7 @@ RUN pip install -r requirements.txt
 COPY . .
 EXPOSE 3000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3000"]
+CMD ["python", "startup.py"]
 ```
 
 ## 🔍 Troubleshooting

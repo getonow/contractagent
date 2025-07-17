@@ -205,7 +205,7 @@ curl -X POST http://localhost:3000/api/contracts/analyze \
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `PORT` | Server port | No (default: 3000) |
+
 | `NODE_ENV` | Environment mode | No (default: development) |
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | Yes |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key | Yes |

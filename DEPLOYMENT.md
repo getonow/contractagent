@@ -29,7 +29,6 @@ Your repository should now contain these deployment files:
    - Add all environment variables from your `.env` file:
    ```
    NODE_ENV=production
-   PORT=3000
    NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
    ASTRA_DB_ENDPOINT=your_astra_endpoint
@@ -92,7 +91,7 @@ Your API is already configured to allow requests from:
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `NODE_ENV` | Set to `production` | Yes |
-| `PORT` | Port for the application | Yes |
+
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | Yes |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key | Yes |
 | `ASTRA_DB_ENDPOINT` | DataStax Astra endpoint | Yes |
