@@ -179,11 +179,9 @@ async def not_found_handler(request: Request, exc: Exception):
     )
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 3000))
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=port,
         reload=True if os.getenv("NODE_ENV") != "production" else False,
         log_level="info"
     ) 
