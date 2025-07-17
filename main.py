@@ -73,17 +73,9 @@ app = FastAPI(
 # CORS middleware configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"] if os.getenv("NODE_ENV") != "production" else [
-        "https://preview-05fcvr4e--ai-procure-optimize-5.deploypad.app",
-        "https://preview-22p47wvh--ai-procure-optimize-5.deploypad.app",
-        "https://*.deploypad.app",  # All deploypad subdomains
-        "https://*.railway.app",   # Railway domains
-        "https://*.vercel.app",    # Vercel domains
-        "https://*.netlify.app",   # Netlify domains
-        "https://*.herokuapp.com"  # Heroku domains
-    ],
+    allow_origins=["*"],  # Allow all origins for development/testing
     allow_credentials=False,
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -113,6 +105,12 @@ async def log_requests(request: Request, call_next):
 
 # Include routers
 app.include_router(contract_routes.router, prefix="/api/contracts", tags=["contracts"])
+
+# CORS preflight handler for the contracts analyze endpoint
+@app.options("/api/contracts/analyze", tags=["contracts"])
+async def contracts_analyze_options():
+    """Handle CORS preflight requests for the contracts analyze endpoint"""
+    return {"message": "CORS preflight successful"}
 
 # Direct health endpoint for Railway health checks
 @app.get("/api/health", tags=["health"])
