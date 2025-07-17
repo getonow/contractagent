@@ -16,11 +16,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
-# Make the startup script executable
-RUN chmod +x start.sh
-
 # Expose port
 EXPOSE 3000
 
-# Start the application
-CMD ["./start.sh"] 
+# Start the application with proper environment variable handling
+CMD ["/bin/bash", "-c", "PORT=${PORT:-3000} && echo \"Starting FastAPI application on port $PORT\" && uvicorn main:app --host 0.0.0.0 --port $PORT"] 
