@@ -1,1 +1,1 @@
-web: python startup.py 
+web: /opt/venv/bin/python startup.py
